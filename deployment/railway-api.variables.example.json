@@ -1,0 +1,13 @@
+{
+  "DATABASE_URL": "${{Postgres.DATABASE_URL}}",
+  "API_TITLE": "Tuia Cucina API",
+  "API_VERSION": "0.1.0",
+  "ENVIRONMENT": "production",
+  "DEBUG": "false",
+  "SQLALCHEMY_ECHO": "false",
+  "SECRET_KEY": "REPLACE_WITH_A_RANDOM_SECRET",
+  "INITIAL_ADMIN_EMAIL": "admin@example.com",
+  "INITIAL_ADMIN_NAME": "Administrador Tuia",
+  "INITIAL_ADMIN_PASSWORD": "REPLACE_WITH_A_RANDOM_PASSWORD",
+  "CORS_ORIGINS": ""
+}
