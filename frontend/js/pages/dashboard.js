@@ -27,8 +27,8 @@ export async function render(container) {
   container.innerHTML = `
     <section class="page-heading">
       <div>
-        <h2>Bom trabalho, ${escapeHtml(user?.nome || '')}</h2>
-        <p>Um resumo do que precisa da sua atenção hoje.</p>
+        <h2>Buongiorno, ${escapeHtml(user?.nome || '')}!</h2>
+        <p>Os pedidos e a fornada de hoje, em um só lugar.</p>
       </div>
       ${canManage ? '<a class="button button--primary" href="#/pedido-novo">Criar pedido</a>' : ''}
     </section>

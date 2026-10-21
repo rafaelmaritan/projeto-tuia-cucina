@@ -74,12 +74,11 @@ function renderLogin() {
     <main class="login-layout">
       <section class="login-card" aria-labelledby="login-title">
         <a class="brand brand--login" href="#/login" aria-label="Tuia Cucina">
-          <span class="brand-mark">T</span>
-          <span><strong>Tuia</strong><small>Cucina</small></span>
+          <img class="login-brand-image" src="/assets/tuia.jpg" alt="Tuia Cucina">
         </a>
-        <p class="eyebrow">PAINEL DE OPERAÇÕES</p>
-        <h1 id="login-title">Bem-vindo de volta</h1>
-        <p class="muted">Entre para acompanhar a rotina da cozinha.</p>
+        <p class="eyebrow">MICROPADARIA ARTESANAL · FRANCA, SP</p>
+        <h1 id="login-title">Buongiorno!</h1>
+        <p class="muted">Entre para acompanhar nossa fornada e receber cada encomenda com carinho.</p>
         <div id="login-feedback">${feedbackMarkup(loginNotice, 'info')}</div>
         <form id="login-form" class="form-stack">
           <label for="login-email">E-mail</label>
@@ -91,8 +90,11 @@ function renderLogin() {
         <p class="login-footnote">Acesso restrito à equipe Tuia Cucina.</p>
       </section>
       <aside class="login-aside" aria-hidden="true">
-        <div class="bread-illustration">✳</div>
-        <p>Feito com cuidado,<br>do preparo à entrega.</p>
+        <div class="login-aside-content">
+          <img class="login-aside-logo" src="/assets/tuia.jpg" alt="">
+          <p>Água, farinha<br>e tempo.</p>
+          <span>Fermentação natural, nossa paixão.</span>
+        </div>
       </aside>
     </main>
   `;
@@ -135,13 +137,13 @@ function renderShell(page, pageKey) {
     <div class="app-shell">
       <aside class="sidebar" id="sidebar">
         <a class="brand" href="#/dashboard" aria-label="Tuia Cucina, visão geral">
-          <span class="brand-mark">T</span>
+          <span class="brand-emblem" aria-hidden="true"><img src="/assets/tuia.jpg" alt=""></span>
           <span><strong>Tuia</strong><small>Cucina</small></span>
         </a>
-        <p class="sidebar-caption">GESTÃO DA PADARIA</p>
+        <p class="sidebar-caption">ROTINA DA MICROPADARIA</p>
         <nav class="nav-menu" aria-label="Navegação principal">${links}</nav>
         <div class="sidebar-bottom">
-          <span class="sidebar-note">Pequenos lotes,<br>grandes cuidados.</span>
+          <span class="sidebar-note">Água, farinha<br>e tempo.</span>
         </div>
       </aside>
       <div class="workspace">
@@ -272,8 +274,9 @@ window.addEventListener('hashchange', () => {
 });
 
 window.addEventListener('tuia:session-expired', () => {
+  const hadActiveSession = getCurrentUser() !== null;
   setCurrentUser(null);
-  loginNotice = 'Sua sessão expirou. Entre novamente.';
+  loginNotice = hadActiveSession ? 'Sua sessão expirou. Entre novamente.' : '';
   if (currentPath() === 'login') {
     renderLogin();
   } else {
@@ -282,7 +285,7 @@ window.addEventListener('tuia:session-expired', () => {
 });
 
 async function start() {
-  root.innerHTML = '<main class="boot-screen"><span class="brand-mark">T</span><p>Conectando à Tuia Cucina…</p></main>';
+  root.innerHTML = '<main class="boot-screen"><span class="brand-emblem" aria-hidden="true"><img src="/assets/tuia.jpg" alt=""></span><p>Conectando à Tuia Cucina…</p></main>';
   try {
     const user = await initializeAuth();
     if (!location.hash) {
