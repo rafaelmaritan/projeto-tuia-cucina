@@ -288,7 +288,7 @@ def refresh_token_endpoint(
 
     # Gerar novo access token
     new_access_token = criar_access_token(data={
-        "sub": usuario.id,
+        "sub": str(usuario.id),
         "email": usuario.email,
         "papel": usuario.papel
     })
