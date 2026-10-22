@@ -268,7 +268,14 @@ def refresh_token_endpoint(
         )
 
     # Buscar usuário
-    usuario_id = payload.get("sub")
+    try:
+        usuario_id = int(payload.get("sub"))
+    except (TypeError, ValueError) as error:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Refresh token inválido ou expirado"
+        ) from error
+
     usuario = db.query(models.Usuario).filter(
         models.Usuario.id == usuario_id
     ).first()
